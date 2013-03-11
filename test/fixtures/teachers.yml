@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tea_no: 
+  name: 
+  hashed_password: MyString
+
+two:
+  tea_no: 
+  name: 
+  hashed_password: MyString

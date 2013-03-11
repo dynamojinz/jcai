@@ -1,4 +1,20 @@
 Jcai::Application.routes.draw do
+
+  root :to => 'login#welcome'
+
+  get "login/welcome"
+
+  get "login/login"
+
+  get "login/logout"
+
+  get "login/notice"
+
+  get "login/change_password"
+
+  resources :students
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

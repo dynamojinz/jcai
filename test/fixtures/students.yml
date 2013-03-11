@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  stu_no: 
+  name: 
+  hashed_password: MyString
+
+two:
+  stu_no: 
+  name: 
+  hashed_password: MyString
