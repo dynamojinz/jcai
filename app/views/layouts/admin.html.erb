@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= @page_title || "管理后台" %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="banner" align="center">
+    <%= @page_title || "教学系统管理后台" %>
+  </div>
+  <div id="columns">
+    <div id="side">
+      <%= link_to '学生管理', :controller => 'stu_admin', :action => 'list' %><br />
+      <%= link_to '教师管理', :controller => 'tea_admin', :action => 'list' %><br />
+      <%= link_to '教学通知', :controller => 'notice_admin', :action => 'list' %><br />
+      <%= link_to '课程管理', :controller => 'course_admin',:action => 'list' %><br />
+      <%= link_to '更改密码', :controller => 'login', :action => 'change_password' %><br />
+      <%= link_to '退出系统', :controller => 'login', :action => 'logout' %>
+    </div>
+    <div id="main">
+      <% if flash[:notice] -%>
+        <div id="notice"><%= flash[:notice] %></div>
+      <% end -%>
+      <%= yield  %>
+    </div>
+  </div>
+  <div id="footer" align="center">
+    All Rights Resered by @dynamojinz
+  </div>
+</body>
+</html>

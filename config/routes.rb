@@ -5,6 +5,8 @@ Jcai::Application.routes.draw do
   get "login/welcome"
 
   get "login/login"
+	
+  post "login/login"
 
   get "login/logout"
 
