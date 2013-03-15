@@ -1,6 +1,8 @@
 class Student < ActiveRecord::Base
   attr_accessible :hashed_password, :name, :stu_no
-  #has_and_belongs_to_many :courses
+	#FIXME, needs to be changed to has_many :through, as the 
+	# relationship become more complicated
+	has_and_belongs_to_many :courses
   
   validates_presence_of :stu_no, :name, :hashed_password
   validates_uniqueness_of :stu_no
