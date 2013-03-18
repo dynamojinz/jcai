@@ -21,7 +21,8 @@ class LoginController < ApplicationController
             when 's'
               redirect_to :controller => 'student/course', :action => 'index'
             when 'a'
-              redirect_to :controller => 'course_admin', :action => 'list'
+              #redirect_to :controller => 'course_admin', :action => 'list'
+              redirect_to @admin_course
           end
         else
           flash[:notice] = "用户名或密码输错了！"
