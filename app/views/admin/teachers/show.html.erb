@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Tea no:</b>
+  <%= @admin_teacher.tea_no %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @admin_teacher.name %>
+</p>
+
+<p>
+  <b>Hashed password:</b>
+  <%= @admin_teacher.hashed_password %>
+</p>
+
+<%= link_to 'Edit', edit_admin_teacher_path(@admin_teacher) %> |
+<%= link_to 'Back', admin_teachers_path %>
