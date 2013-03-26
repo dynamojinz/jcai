@@ -1,5 +1,5 @@
 class Teacher < ActiveRecord::Base
-  attr_accessible :hashed_password, :name, :tea_no
+  attr_accessible :password, :name, :tea_no
 	has_many :courses
   
   validates_presence_of :tea_no, :name, :hashed_password

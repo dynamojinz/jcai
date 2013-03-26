@@ -4,11 +4,10 @@ class Course < ActiveRecord::Base
 	# relationship become more complicated
   has_and_belongs_to_many :students
 
-  attr_accessible :arrangement, :description, :name
+  attr_accessible :arrangement, :description, :name, :teacher_id
 
   validates_presence_of :name, :description, :teacher_id
 
-  def validate
-    errors.add(:teacher, "Invalid ID") unless teacher_id>0 
-  end
+	validates :teacher_id, :numericality => {:greater_than => 0}
+
 end

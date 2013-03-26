@@ -13,12 +13,12 @@
   </div>
   <div id="columns">
     <div id="side">
-      <%= link_to '学生管理', :controller => 'stu_admin', :action => 'list' %><br />
-      <%= link_to '教师管理', :controller => 'tea_admin', :action => 'list' %><br />
-      <%= link_to '教学通知', :controller => 'notice_admin', :action => 'list' %><br />
-      <%= link_to '课程管理', :controller => 'course_admin',:action => 'list' %><br />
-      <%= link_to '更改密码', :controller => 'login', :action => 'change_password' %><br />
-      <%= link_to '退出系统', :controller => 'login', :action => 'logout' %>
+      <%= link_to '学生管理', admin_students_path %><br />
+      <%= link_to '教师管理', admin_teachers_path %><br />
+      <%= link_to '教学通知', 'admin_notices_path' %><br />
+      <%= link_to '课程管理', admin_courses_path %><br />
+      <%= link_to '更改密码', '/login/change_password' %><br />
+      <%= link_to '退出系统', '/login/logout' %>
     </div>
     <div id="main">
       <% if flash[:notice] -%>

@@ -1,4 +1,6 @@
 class Admin::CoursesController < ApplicationController
+	layout 'admin'
+  #before_filter :get_admin
   # GET /admin/courses
   # GET /admin/courses.json
   def index
@@ -24,7 +26,7 @@ class Admin::CoursesController < ApplicationController
   # GET /admin/courses/new
   # GET /admin/courses/new.json
   def new
-    @admin_course = Course.new
+    @admin_course =Admin::Course.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,11 +42,11 @@ class Admin::CoursesController < ApplicationController
   # POST /admin/courses
   # POST /admin/courses.json
   def create
-    @admin_course = Course.new(params[:admin_course])
+    @admin_course = Course.new(params[:course])
 
     respond_to do |format|
-      if @course.save
-        format.html { redirect_to @admin_course, :notice => 'Course was successfully created.' }
+      if @admin_course.save
+        format.html { redirect_to [:admin, @admin_course], :notice => 'Course was successfully created.' }
         format.json { render :json => @admin_course, :status => :created, :location => @admin_course }
       else
         format.html { render :action => "new" }
@@ -56,11 +58,11 @@ class Admin::CoursesController < ApplicationController
   # PUT /admin/courses/1
   # PUT /admin/courses/1.json
   def update
-    @admin_course = Course.find(params[:id])
+    @admin_course = Admin::Course.find(params[:id])
 
     respond_to do |format|
-      if @admin_course.update_attributes(params[:admin_course])
-        format.html { redirect_to @admin_course, :notice => 'Course was successfully updated.' }
+      if @admin_course.update_attributes(params[:course])
+        format.html { redirect_to [:admin, @admin_course], :notice => 'Course was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
