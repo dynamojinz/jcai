@@ -1,0 +1,12 @@
+<%= form_tag :action => 'login' do%>
+<div id="login">
+	<div><label for="user_name">用户名：</label><%= text_field 'user', 'name', :size => 25  %></div>
+	<div><label for="user_password">密　码：</label><%= password_field 'user', 'password', :size => 26 %></div>
+	<div><label for="user_type">类　型：</lable>
+		<%= radio_button 'user', 'type', 's' %>学生&nbsp;
+		<%= radio_button 'user', 'type', 't'%>教师&nbsp;
+		<%= radio_button 'user', 'type', 'a' %>管理员&nbsp;
+	</div>
+	<input type="submit" value="登录" />  
+</div>
+<% end %>

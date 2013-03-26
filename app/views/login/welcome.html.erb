@@ -1,0 +1,10 @@
+<% @page_title = "欢迎您使用教学管理系统" -%>
+<div id="notices">
+    <ul>
+    <% for notice in @notices -%>
+    <li><%= link_to "#{h notice.title}(#{h datetime_string(notice.updated_at)})", {:action => 'notice', :id => notice}, :popup => ['notic', 'width=600, height=500, scrollbars=1'] %></li>
+    <% end -%>
+    </ul>
+</div>
+
+<div class="control"> <%= link_to '登录教学系统>>', :action => 'login' %> </div>

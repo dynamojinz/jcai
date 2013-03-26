@@ -1,0 +1,27 @@
+<h1>Listing admin_teachers</h1>
+
+<table>
+  <tr>
+    <th>Tea no</th>
+    <th>Name</th>
+    <th>Hashed password</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_teachers.each do |admin_teacher| %>
+  <tr>
+    <td><%= admin_teacher.tea_no %></td>
+    <td><%= admin_teacher.name %></td>
+    <td><%= admin_teacher.hashed_password %></td>
+    <td><%= link_to 'Show', [:admin, admin_teacher] %></td>
+    <td><%= link_to 'Edit', edit_admin_teacher_path(admin_teacher) %></td>
+    <td><%= link_to 'Destroy', [:admin, admin_teacher], :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Teacher', new_admin_teacher_path %>
