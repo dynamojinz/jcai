@@ -1,5 +1,6 @@
 class Admin::StudentsController < ApplicationController
 	layout 'admin'
+  before_filter :get_admin
   # GET /admin/students
   # GET /admin/students.json
   def index
@@ -41,11 +42,11 @@ class Admin::StudentsController < ApplicationController
   # POST /admin/students
   # POST /admin/students.json
   def create
-    @admin_student = Admin::Student.new(params[:admin_student])
+    @admin_student = Admin::Student.new(params[:student])
 
     respond_to do |format|
       if @admin_student.save
-        format.html { redirect_to @admin_student, :notice => 'Student was successfully created.' }
+        format.html { redirect_to [:admin, @admin_student], :notice => 'Student was successfully created.' }
         format.json { render :json => @admin_student, :status => :created, :location => @admin_student }
       else
         format.html { render :action => "new" }
@@ -60,8 +61,8 @@ class Admin::StudentsController < ApplicationController
     @admin_student = Admin::Student.find(params[:id])
 
     respond_to do |format|
-      if @admin_student.update_attributes(params[:admin_student])
-        format.html { redirect_to @admin_student, :notice => 'Student was successfully updated.' }
+      if @admin_student.update_attributes(params[:student])
+        format.html { redirect_to [:admin, @admin_student], :notice => 'Student was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

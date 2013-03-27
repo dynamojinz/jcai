@@ -2,6 +2,9 @@
 
 <table>
   <tr>
+    <th>Stu no</th>
+    <th>Name</th>
+    <th>Hashed password</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,9 +12,12 @@
 
 <% @admin_students.each do |admin_student| %>
   <tr>
-    <td><%= link_to 'Show', admin_student %></td>
+    <td><%= admin_student.stu_no %></td>
+    <td><%= admin_student.name %></td>
+    <td><%= admin_student.hashed_password %></td>
+    <td><%= link_to 'Show', [:admin, admin_student] %></td>
     <td><%= link_to 'Edit', edit_admin_student_path(admin_student) %></td>
-    <td><%= link_to 'Destroy', admin_student, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td><%= link_to 'Destroy', [:admin, admin_student], :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
