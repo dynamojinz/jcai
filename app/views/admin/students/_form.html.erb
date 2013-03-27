@@ -1,4 +1,4 @@
-<%= form_for(@admin_student) do |f| %>
+<%= form_for([:admin, @admin_student]) do |f| %>
   <% if @admin_student.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@admin_student.errors.count, "error") %> prohibited this admin_student from being saved:</h2>
@@ -11,6 +11,18 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :stu_no %><br />
+    <%= f.text_field :stu_no %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

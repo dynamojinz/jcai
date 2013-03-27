@@ -17,7 +17,7 @@ Jcai::Application.routes.draw do
   resources :students
 
 	 namespace :admin do
-		 resources :courses, :teachers, :students
+		 resources :courses, :teachers, :students, :notices
 	 end
 
   # The priority is based upon order of creation:

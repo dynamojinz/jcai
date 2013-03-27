@@ -1,5 +1,6 @@
 class Admin::CoursesController < ApplicationController
 	layout 'admin'
+  before_filter :get_admin
   #before_filter :get_admin
   # GET /admin/courses
   # GET /admin/courses.json
