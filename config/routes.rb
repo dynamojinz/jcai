@@ -1,5 +1,12 @@
 Jcai::Application.routes.draw do
 
+	namespace :teacher do
+		get "course/index"
+		get "course/course"
+		get "course/arragement"
+		get "course/students"
+	end
+
   root :to => 'login#welcome'
 
   get "login/welcome"

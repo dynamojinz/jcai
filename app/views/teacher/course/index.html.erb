@@ -1,0 +1,14 @@
+﻿<% @page_title="#{@teacher.name}老师课程管理首页" -%>
+<div class="title">请选择要管理的课程</div>
+<ul>
+<% for course in @courses -%>
+    <li>
+    <%= h course.name %>(共<%= h course.students.size %>位学生,<%= h course.coursewares.size %>个课件,<%= h course.exams.size %>个测验) &nbsp;&nbsp;
+    <%= link_to '进入课程首页', :action => 'course', :id => course %>
+    </li>
+<% end %>
+</ul>
+<br />
+
+
+
