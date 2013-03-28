@@ -1,9 +1,11 @@
 Jcai::Application.routes.draw do
 
 	namespace :teacher do
+		resources :coursewares, :notifies, :exams, :messages
+
 		get "course/index"
 		get "course/course"
-		get "course/arragement"
+		get "course/arrangement"
 		get "course/students"
 	end
 

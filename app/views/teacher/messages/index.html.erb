@@ -1,0 +1,21 @@
+<h1>Listing teacher_messages</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teacher_messages.each do |teacher_message| %>
+  <tr>
+    <td><%= link_to 'Show', teacher_message %></td>
+    <td><%= link_to 'Edit', edit_teacher_message_path(teacher_message) %></td>
+    <td><%= link_to 'Destroy', teacher_message, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Message', new_teacher_message_path %>

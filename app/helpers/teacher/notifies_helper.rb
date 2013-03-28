@@ -1,0 +1,2 @@
+module Teacher::NotifiesHelper
+end

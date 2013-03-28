@@ -6,15 +6,15 @@
       <% for notify in @notifies -%>
       <li>
       <%= h notify.title %>(阅读次数:<%= h notify.readed_times %>次) &nbsp;
-      <%= link_to '查看', :controller => 'notify', :action => 'show', :id => @course, :nt_id => notify %>
+      <%= link_to '查看', :controller => 'notifies', :action => 'show', :id => @course, :nt_id => notify %>
       </li>
       <% end -%>
     </ul>
     ……
   </div>
-  <div class="command"><%= link_to '管理', :controller => 'notify', :action => 'list', :id => @course %></div>
+  <div class="command"><%= link_to '管理', :controller => 'notifies', :action => 'index', :id => @course %></div>
   <div class="title">课程安排</div>
-  <div class="content"><%=simple_format(h(truncate(@course.arrangement,100))) %></div>
+  <div class="content"><%= simple_format(h(@course.arrangement)) %></div>
   <div class="command"><%= link_to '修改', :action => 'arrangement', :id => @course %></div>
   <div class="title">课程资料</div>
   <div class="content">
@@ -22,13 +22,13 @@
       <% for courseware in @coursewares -%>
       <li>
       <%= h courseware.file_name %>(类型:<%= h courseware.content_type %>,大小:<%= courseware.file_size/1024 %>kb) &nbsp;
-      <%= link_to '下载', :controller => 'courseware', :action => 'download', :id => @course, :cw_id => courseware %>
+      <%= link_to '下载', :controller => 'coursewares', :action => 'download', :id => @course, :cw_id => courseware %>
       </li>
       <% end -%>
     </ul>
     ……
   </div>
-  <div class="command"><%= link_to '管理', :controller => 'courseware', :action => 'list', :id => @course %></div>
+  <div class="command"><%= link_to '管理', :controller => 'coursewares', :action => 'index', :id => @course %></div>
   <div class="title">课程测验</div>
   <div class="content">
      <ul>
@@ -41,7 +41,7 @@
     </ul>
     ……
   </div>
-  <div class="command"><%= link_to '管理', :controller => 'exam', :action => 'list', :id => @course %></div>
+  <div class="command"><%= link_to '管理', :controller => 'exams', :action => 'index', :id => @course %></div>
   
    
    <div class="title">学生列表</div>
@@ -54,15 +54,12 @@
      <ul>
       <% for message in @messages -%>
       <li>
-      <%= link_to h(truncate(message.question, 50)),:controller => 'message', :action => 'show', :id => @course, :ms_id => message %>
+      <%= link_to h(truncate(message.question, 50)),:controller => 'messages', :action => 'show', :id => @course, :ms_id => message %>
       (<%= h(message.student.name) if message.student %>,<%= datetime_string(message.created_at) %>) &nbsp;
-      <%= link_to '回复',:controller => 'message', :action => 'reply', :id => @course, :ms_id => message %>
+      <%= link_to '回复',:controller => 'messages', :action => 'reply', :id => @course, :ms_id => message %>
       </li>
       <% end -%>
     </ul>
-  <div class="command"><%= link_to '管理', :controller => 'message', :action => 'list', :id => @course %></div>
+  <div class="command"><%= link_to '管理', :controller => 'messages', :action => 'index', :id => @course %></div>
  
-
-
-
 
