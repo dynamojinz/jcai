@@ -1,6 +1,6 @@
 class Courseware < ActiveRecord::Base
 	belongs_to :course
-  attr_accessible :content_type, :course, :description, :downloaded, :file_data, :file_name, :file_size
+  attr_accessible :content_type, :course, :description, :downloaded, :file_data, :file_name, :file_size, :courseware
   validates_presence_of :file_name, :message => "cann't be blank--must select a file"
   def courseware=(courseware_field)
     unless courseware_field == ""

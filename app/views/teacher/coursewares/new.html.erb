@@ -1,5 +1,6 @@
-<h1>New teacher_courseware</h1>
-
+<% @page_title=@course.name+"课程管理"  -%>
+ <div class="title">新课件上传</div>
+ <div class="content">
 <%= render 'form' %>
-
-<%= link_to 'Back', teacher_coursewares_path %>
+</div>
+<%= link_to 'Back', teacher_course_coursewares_path(@course) %>

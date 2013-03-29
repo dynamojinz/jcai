@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328074514) do
+ActiveRecord::Schema.define(:version => 20130329093937) do
 
   create_table "admins", :force => true do |t|
     t.string   "name"
@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(:version => 20130328074514) do
   create_table "notifies", :force => true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "readed_times"
+    t.integer  "readed_times", :default => 0
     t.integer  "course_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "notifies", ["course_id"], :name => "index_notifies_on_course_id"

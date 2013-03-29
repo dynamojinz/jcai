@@ -1,5 +1,12 @@
-<p id="notice"><%= notice %></p>
+<% @page_title=@course.name+"课程管理"  -%>
 
+<div class="title"><%= h @course.name %>课程－－查看通知</div>
+<p>标题：<%= h @notify.title %></p>
+<p>创建时间：<%= h @notify.created_at %>分钟</p>
+<p>最后更新：<%= h @notify.updated_at %></p>
+<p>内容：</br>
+<%= simple_format(h(@notify.content)) %>
+</p>
 
-<%= link_to 'Edit', edit_teacher_notify_path(@teacher_notify) %> |
-<%= link_to 'Back', teacher_notifies_path %>
+<%= link_to 'Edit', edit_teacher_course_notify_path(@course, @notify) %> |
+<%= link_to 'Back', teacher_course_notifies_path(@course) %>

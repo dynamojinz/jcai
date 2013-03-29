@@ -37,3 +37,6 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug'
+
+# Use kaminari as default paginator
+gem 'kaminari'

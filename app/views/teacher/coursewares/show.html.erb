@@ -1,5 +1,14 @@
-<p id="notice"><%= notice %></p>
+<% @page_title=@course.name+"课程管理"  -%>
+  <div class="title"><%= h @course.name %>课程－－查看课件</div>
+  <p>文件名：<%= h @courseware.file_name %></p>
+  <p>类型：<%= h @courseware.content_type %></p>
+  <p>大小：<%= h @courseware.file_size %></p>
+  <p>上传时间：<%= h @courseware.updated_at %></p>
+  <p>下载次数：<%= h @courseware.downloaded %>
+  <p>课件说明：</br>
+  <%= simple_format(h(@courseware.description)) %>
+  </p>
+  <p><%=  link_to '下载', download_teacher_course_courseware_path(@course, @courseware) %></p>
 
-
-<%= link_to 'Edit', edit_teacher_courseware_path(@teacher_courseware) %> |
-<%= link_to 'Back', teacher_coursewares_path %>
+<%= link_to 'Edit', edit_teacher_course_courseware_path(@course, @courseware) %> |
+<%= link_to 'Back', teacher_course_coursewares_path(@course) %>

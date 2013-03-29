@@ -1,6 +1,7 @@
-<h1>Editing teacher_courseware</h1>
-
+<% @page_title=@course.name+"课程管理"  -%>
+ <div class="title">修改课件</div>
+ <div class="content">
 <%= render 'form' %>
 
-<%= link_to 'Show', @teacher_courseware %> |
-<%= link_to 'Back', teacher_coursewares_path %>
+<%= link_to 'Show', [:teacher, @course, @courseware] %> |
+<%= link_to 'Back', teacher_course_coursewares_path(@course) %>

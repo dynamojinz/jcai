@@ -22,18 +22,24 @@ class ApplicationController < ActionController::Base
     end
   end  
   #-----------------------Teacher Module------------------------------------
-  def get_teacher_and_courses
-    unless @teacher = get_teacher
+  def get_teacher
+    unless @teacher = _get_teacher
       handle_error("请登录先！") 
       return false
     end
-    @courses = @teacher.courses
-    @course = @courses.find(params[:id]) if params[:id]
+  end
+
+  def get_teacher_and_course
+    unless @teacher = _get_teacher
+      handle_error("请登录先！") 
+      return false
+    end
+    @course = @teacher.courses.find(params[:course_id])
   rescue
     handle_error "参数错误！"
   end
   
-  def get_teacher
+  def _get_teacher
     if session[:user_type] == 't' and session[:user_id]
       teacher = Teacher.find(session[:user_id])
     end

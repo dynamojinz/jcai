@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+﻿<!DOCTYPE html>
+<html>
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title><%= @page_title || @teacher.name+"老师管理后台" %></title>
-  <%= stylesheet_link_tag 'scaffold', 'jcai', 'teacher', :media => "all" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
 </head>
 <body>
   <div id="banner" align="center">
@@ -16,8 +16,8 @@
       <div class="subtitle">所授课程</div>
       <div class="subleft"></div>
       <div class="subright">
-        <% for course in @courses -%>
-          <%= link_to course.name, :controller => 'course', :action => 'course', :id =>course %><br />
+        <% for course in @teacher.courses -%>
+          <%= link_to course.name, teacher_course_path(course) %><br />
         <% end -%>
       </div>
       <div class="subtitle">个人设置</div>
