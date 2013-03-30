@@ -1,56 +1,57 @@
 class Teacher::MessagesController < ApplicationController
   layout 'teacher'
-	before_filter :get_teacher_and_courses
+	before_filter :get_teacher_and_course
   # GET /teacher/messages
   # GET /teacher/messages.json
   def index
-    @teacher_messages = Teacher::Message.all
+		@messages = Message.where(:course_id => @course.id).order('created_at').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @teacher_messages }
+      format.json { render :json => @course.messages }
     end
   end
 
   # GET /teacher/messages/1
   # GET /teacher/messages/1.json
   def show
-    @teacher_message = Teacher::Message.find(params[:id])
+    @message = @course.messages.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @teacher_message }
+      format.json { render :json => @message }
     end
   end
 
   # GET /teacher/messages/new
   # GET /teacher/messages/new.json
   def new
-    @teacher_message = Teacher::Message.new
+    @message = Message.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @teacher_message }
+      format.json { render :json => @message }
     end
   end
 
   # GET /teacher/messages/1/edit
   def edit
-    @teacher_message = Teacher::Message.find(params[:id])
+    @message = @course.messages.find(params[:id])
   end
 
   # POST /teacher/messages
   # POST /teacher/messages.json
   def create
-    @teacher_message = Teacher::Message.new(params[:teacher_message])
+    @message = Message.new(params[:message])
+		@course.messages << @message
 
     respond_to do |format|
-      if @teacher_message.save
-        format.html { redirect_to @teacher_message, :notice => 'Message was successfully created.' }
-        format.json { render :json => @teacher_message, :status => :created, :location => @teacher_message }
+      if @message.save
+        format.html { redirect_to [:teacher, @course, @message], :notice => 'Message was successfully created.' }
+        format.json { render :json => @message, :status => :created, :location => @message }
       else
         format.html { render :action => "new" }
-        format.json { render :json => @teacher_message.errors, :status => :unprocessable_entity }
+        format.json { render :json => @message.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -58,15 +59,15 @@ class Teacher::MessagesController < ApplicationController
   # PUT /teacher/messages/1
   # PUT /teacher/messages/1.json
   def update
-    @teacher_message = Teacher::Message.find(params[:id])
+    @message = @course.messages.find(params[:id])
 
     respond_to do |format|
-      if @teacher_message.update_attributes(params[:teacher_message])
-        format.html { redirect_to @teacher_message, :notice => 'Message was successfully updated.' }
+      if @message.update_attributes(params[:message])
+        format.html { redirect_to [:teacher, @course, @message], :notice => 'Message was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
-        format.json { render :json => @teacher_message.errors, :status => :unprocessable_entity }
+        format.json { render :json => @message.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -74,11 +75,11 @@ class Teacher::MessagesController < ApplicationController
   # DELETE /teacher/messages/1
   # DELETE /teacher/messages/1.json
   def destroy
-    @teacher_message = Teacher::Message.find(params[:id])
-    @teacher_message.destroy
+    @message = @course.messages.find(params[:id])
+    @message.destroy
 
     respond_to do |format|
-      format.html { redirect_to teacher_messages_url }
+      format.html { redirect_to teacher_course_messages_url(@course) }
       format.json { head :no_content }
     end
   end

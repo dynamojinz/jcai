@@ -34,7 +34,7 @@
      <ul>
       <% for exam in @exams -%>
       <li>
-      <%= h exam.name %>(共<%= h exam.questions.size %>题，总分<%= h exam.total_score %>分，限时<%= h exam.time_limit %>分钟) &nbsp;
+      <%= h exam.name %>(共 h exam.questions.size 题，总分 h exam.total_score 分，限时<%= h exam.time_limit %>分钟) &nbsp;
       <%= link_to '查看', teacher_course_exam_path(@course, exam) %>
       </li>
       <% end -%>
