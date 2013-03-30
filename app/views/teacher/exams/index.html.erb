@@ -1,21 +1,35 @@
-<h1>Listing teacher_exams</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+<% @page_title=@course.name+"课程管理"  -%>
+  <div class="title"><%= @course.name %>课程－－测验管理</div>
+  <table>
+  <tr class="ListTitle">
+    <th>测验名称</th>
+    <th>时间限制</th>
+    <th>试题数</th>
+    <th>总分</th>
+    <th>更新时间</th>
   </tr>
-
-<% @teacher_exams.each do |teacher_exam| %>
-  <tr>
-    <td><%= link_to 'Show', teacher_exam %></td>
-    <td><%= link_to 'Edit', edit_teacher_exam_path(teacher_exam) %></td>
-    <td><%= link_to 'Destroy', teacher_exam, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    
+<% 
+odd_or_even = 0
+for exam in @exams
+odd_or_even = 1 - odd_or_even
+-%>
+  <tr class="ListLine<%= odd_or_even %>">
+    <td><%=h exam.name %></td>
+    <td><%=h exam.time_limit %>分钟</td>
+    <td> h exam.questions.size </td>
+    <td> h exam.total_score </td>
+    <td><%=h exam.updated_at %></td>
+    <td><%= link_to '试题管理', teacher_course_exam_questions_path(@course, exam) %></td>
+    <td><%= link_to '测验记录', teacher_course_exam_records_path(@course, exam) %></td>
+    <td><%= link_to '显示', [:teacher, @course, exam] %></td>
+    <td><%= link_to '修改', edit_teacher_course_exam_path(@course, exam) %></td>
+	<td><%= link_to '删除', [:teacher, @course, exam], :method => :delete, :data => {:confirm => '确认要删除该测验吗?'} %></td>
   </tr>
 <% end %>
-</table>
-
+  </table>
+<%= paginate @exams %>
 <br />
 
-<%= link_to 'New Exam', new_teacher_exam_path %>
+  <%= link_to '创建测验', new_teacher_course_exam_path(@course) %> | 
+  <%= link_to '返回', [:teacher, @course] %>

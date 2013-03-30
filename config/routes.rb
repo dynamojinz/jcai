@@ -2,23 +2,24 @@ Jcai::Application.routes.draw do
 
 	namespace :teacher do
 		resources :courses do
+
 			resources :coursewares do
 				member do 
 					get "download"
 				end
 			end
 
-			resources :notifies, :exams, :messages
+			resources :exams do
+				resources :questions, :records
+			end
+
+			resources :notifies, :messages
 
 			member do
 				get "students"
 			end
 		end
 
-		get "course/index"
-		get "course/course"
-		get "course/arrangement"
-		get "course/students"
 	end
 
   root :to => 'login#welcome'
