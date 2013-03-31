@@ -5,7 +5,7 @@ class Teacher::MessagesController < ApplicationController
   # GET /teacher/courses/1/messages
   # GET /teacher/courses/1/messages.json
   def index
-		@messages = Message.where(:course_id => @course.id).order('created_at').page(params[:page])
+		@messages = Message.where(:course_id => @course.id).order('created_at DESC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

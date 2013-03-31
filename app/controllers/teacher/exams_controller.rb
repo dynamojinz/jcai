@@ -5,7 +5,7 @@ class Teacher::ExamsController < ApplicationController
   # GET /teacher/courses/1/exams
   # GET /teacher/courses/1/exams.json
   def index
-    @exams = Exam.where(:course_id => @course.id).order('created_at').page(params[:page])
+    @exams = Exam.where(:course_id => @course.id).order('created_at DESC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

@@ -26,5 +26,6 @@ odd_or_even = 1 - odd_or_even
   </tr>
 <% end %>
   </table>
+<%= paginate @records %>
 <br />
   <%= link_to '返回', teacher_course_exams_path(@course) %>

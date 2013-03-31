@@ -18,13 +18,13 @@ class Teacher::CoursesController < ApplicationController
   def show
 		@course = @teacher.courses.find(params[:id])
     @notifies = @course.notifies.find(:all,
-																		  :order => 'updated_at DESC',
+																		  :order => 'created_at DESC',
 																		  :limit => 5)
     @coursewares = @course.coursewares.find(:all,
-																						:order => 'updated_at DESC',
+																						:order => 'created_at DESC',
 																						:limit => 5)
     @exams = @course.exams.find(:all,
-																:order => 'updated_at DESC',
+																:order => 'created_at DESC',
 																:limit => 5)
 		@messages = @course.messages.find(:all,
 																			:order => 'created_at desc',

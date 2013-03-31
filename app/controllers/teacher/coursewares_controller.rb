@@ -5,7 +5,7 @@ class Teacher::CoursewaresController < ApplicationController
   # GET /teacher/courses/1/coursewares
   # GET /teacher/courses/1/coursewares.json
   def index
-    @coursewares = Courseware.where(:course_id => @course.id).order('created_at').page(params[:page])
+    @coursewares = Courseware.where(:course_id => @course.id).order('created_at DESC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
