@@ -2,8 +2,8 @@
 class Teacher::MessagesController < ApplicationController
   layout 'teacher'
 	before_filter :get_teacher_and_course
-  # GET /teacher/messages
-  # GET /teacher/messages.json
+  # GET /teacher/courses/1/messages
+  # GET /teacher/courses/1/messages.json
   def index
 		@messages = Message.where(:course_id => @course.id).order('created_at').page(params[:page])
 
@@ -13,8 +13,8 @@ class Teacher::MessagesController < ApplicationController
     end
   end
 
-  # GET /teacher/messages/1
-  # GET /teacher/messages/1.json
+  # GET /teacher/courses/1/messages/1
+  # GET /teacher/courses/1/messages/1.json
   def show
     @message = @course.messages.find(params[:id])
 
@@ -24,8 +24,8 @@ class Teacher::MessagesController < ApplicationController
     end
   end
 
-  # GET /teacher/messages/new
-  # GET /teacher/messages/new.json
+  # GET /teacher/courses/1/messages/new
+  # GET /teacher/courses/1/messages/new.json
   def new
     @message = Message.new
 
@@ -35,13 +35,13 @@ class Teacher::MessagesController < ApplicationController
     end
   end
 
-  # GET /teacher/messages/1/edit
+  # GET /teacher/courses/1/messages/1/edit
   def edit
     @message = @course.messages.find(params[:id])
   end
 
-  # POST /teacher/messages
-  # POST /teacher/messages.json
+  # POST /teacher/courses/1/messages
+  # POST /teacher/courses/1/messages.json
   def create
     @message = Message.new(params[:message])
 		@course.messages << @message
@@ -57,8 +57,8 @@ class Teacher::MessagesController < ApplicationController
     end
   end
 
-  # PUT /teacher/messages/1
-  # PUT /teacher/messages/1.json
+  # PUT /teacher/courses/1/messages/1
+  # PUT /teacher/courses/1/messages/1.json
   def update
     @message = @course.messages.find(params[:id])
 
@@ -73,8 +73,8 @@ class Teacher::MessagesController < ApplicationController
     end
   end
 
-  # DELETE /teacher/messages/1
-  # DELETE /teacher/messages/1.json
+  # DELETE /teacher/courses/1/messages/1
+  # DELETE /teacher/courses/1/messages/1.json
   def destroy
     @message = @course.messages.find(params[:id])
     @message.destroy

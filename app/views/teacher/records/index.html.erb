@@ -1,0 +1,30 @@
+<% @page_title=@course.name+"课程管理"  -%>
+  <div class="title"><%= @course.name %>课程－－测验记录</div>
+
+  <table>
+  <tr class="ListTitle">
+    <th>学生</th>
+    <th>开始时间</th>
+    <th>交卷时间</th>
+    <th>用时</th>
+    <th>得分</th>
+  </tr>
+    
+<% 
+odd_or_even = 0
+for record in @records
+odd_or_even = 1 - odd_or_even
+-%>
+  <tr class="ListLine<%= odd_or_even %>">
+    <td><%=h record.student.name %></td>
+    <td><%=h datetime_string(record.started_at) %></td>
+    <td><%=h datetime_string(record.ended_at) %></td>
+    <td><%= h record.minute_spaned %>分钟</td>
+    <td><%=h record.score %></td>
+    <td><%= link_to '显示', [:teacher, @course, @exam, record] %></td>
+	<td><%= link_to '删除', [:teacher, @course, @exam, record], :method => :delete, :data => {:confirm => '确认要删除该测验记录吗?'} %></td>
+  </tr>
+<% end %>
+  </table>
+<br />
+  <%= link_to '返回', teacher_course_exams_path(@course) %>

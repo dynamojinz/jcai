@@ -70,17 +70,6 @@ class ApplicationController < ActionController::Base
     handle_error "参数错误！"
   end
   
-  def get_question
-    @question = @exam.questions.find(params[:qs_id])
-  rescue
-    handle_error "参数错误！"
-  end
-  
-  def get_record
-    @record = @exam.records.find(params[:rc_id])
-  rescue
-    handle_error "参数错误！"
-  end
   
   def get_notify
     @notify = @course.notifies.find(params[:nt_id])

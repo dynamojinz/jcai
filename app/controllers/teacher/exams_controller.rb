@@ -2,8 +2,8 @@
 class Teacher::ExamsController < ApplicationController
   layout 'teacher'
 	before_filter :get_teacher_and_course
-  # GET /teacher/exams
-  # GET /teacher/exams.json
+  # GET /teacher/courses/1/exams
+  # GET /teacher/courses/1/exams.json
   def index
     @exams = Exam.where(:course_id => @course.id).order('created_at').page(params[:page])
 
@@ -13,8 +13,8 @@ class Teacher::ExamsController < ApplicationController
     end
   end
 
-  # GET /teacher/exams/1
-  # GET /teacher/exams/1.json
+  # GET /teacher/courses/1/exams/1
+  # GET /teacher/courses/1/exams/1.json
   def show
     @exam = @course.exams.find(params[:id])
 
@@ -24,8 +24,8 @@ class Teacher::ExamsController < ApplicationController
     end
   end
 
-  # GET /teacher/exams/new
-  # GET /teacher/exams/new.json
+  # GET /teacher/courses/1/exams/new
+  # GET /teacher/courses/1/exams/new.json
   def new
     @exam = Exam.new
 
@@ -35,13 +35,13 @@ class Teacher::ExamsController < ApplicationController
     end
   end
 
-  # GET /teacher/exams/1/edit
+  # GET /teacher/courses/1/exams/1/edit
   def edit
     @exam = @course.exams.find(params[:id])
   end
 
-  # POST /teacher/exams
-  # POST /teacher/exams.json
+  # POST /teacher/courses/1/exams
+  # POST /teacher/courses/1/exams.json
   def create
     @exam = Exam.new(params[:exam])
 		@course.exams << @exam
@@ -57,8 +57,8 @@ class Teacher::ExamsController < ApplicationController
     end
   end
 
-  # PUT /teacher/exams/1
-  # PUT /teacher/exams/1.json
+  # PUT /teacher/courses/1/exams/1
+  # PUT /teacher/courses/1/exams/1.json
   def update
     @exam = @course.exams.find(params[:id])
 
@@ -73,8 +73,8 @@ class Teacher::ExamsController < ApplicationController
     end
   end
 
-  # DELETE /teacher/exams/1
-  # DELETE /teacher/exams/1.json
+  # DELETE /teacher/courses/1/exams/1
+  # DELETE /teacher/courses/1/exams/1.json
   def destroy
     @exam = @course.exams.find(params[:id])
     @exam.destroy

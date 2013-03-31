@@ -2,8 +2,8 @@
 class Teacher::CoursewaresController < ApplicationController
   layout 'teacher'
 	before_filter :get_teacher_and_course
-  # GET /teacher/coursewares
-  # GET /teacher/coursewares.json
+  # GET /teacher/courses/1/coursewares
+  # GET /teacher/courses/1/coursewares.json
   def index
     @coursewares = Courseware.where(:course_id => @course.id).order('created_at').page(params[:page])
 
@@ -13,8 +13,8 @@ class Teacher::CoursewaresController < ApplicationController
     end
   end
 
-  # GET /teacher/coursewares/1
-  # GET /teacher/coursewares/1.json
+  # GET /teacher/courses/1/coursewares/1
+  # GET /teacher/courses/1/coursewares/1.json
   def show
     @courseware = @course.coursewares.find(params[:id])
 
@@ -24,8 +24,8 @@ class Teacher::CoursewaresController < ApplicationController
     end
   end
 
-  # GET /teacher/coursewares/new
-  # GET /teacher/coursewares/new.json
+  # GET /teacher/courses/1/coursewares/new
+  # GET /teacher/courses/1/coursewares/new.json
   def new
     @courseware = Courseware.new
 
@@ -35,13 +35,13 @@ class Teacher::CoursewaresController < ApplicationController
     end
   end
 
-  # GET /teacher/coursewares/1/edit
+  # GET /teacher/courses/1/coursewares/1/edit
   def edit
     @courseware = @course.coursewares.find(params[:id])
   end
 
-  # POST /teacher/coursewares
-  # POST /teacher/coursewares.json
+  # POST /teacher/courses/1/coursewares
+  # POST /teacher/courses/1/coursewares.json
   def create
     @courseware = Courseware.new(params[:courseware])
 		@course.coursewares << @courseware
@@ -57,8 +57,8 @@ class Teacher::CoursewaresController < ApplicationController
     end
   end
 
-  # PUT /teacher/coursewares/1
-  # PUT /teacher/coursewares/1.json
+  # PUT /teacher/courses/1/coursewares/1
+  # PUT /teacher/courses/1/coursewares/1.json
   def update
     @courseware = @course.coursewares.find(params[:id])
 
@@ -73,8 +73,8 @@ class Teacher::CoursewaresController < ApplicationController
     end
   end
 
-  # DELETE /teacher/coursewares/1
-  # DELETE /teacher/coursewares/1.json
+  # DELETE /teacher/courses/1/coursewares/1
+  # DELETE /teacher/courses/1/coursewares/1.json
   def destroy
     @courseware = @course.coursewares.find(params[:id])
     @courseware.destroy
@@ -85,7 +85,7 @@ class Teacher::CoursewaresController < ApplicationController
     end
   end
 
-  # GET /teacher/coursewares/1/download
+  # GET /teacher/courses/1/coursewares/1/download
   def download
     @courseware = @course.coursewares.find(params[:id])
 		@courseware.downloaded += 1

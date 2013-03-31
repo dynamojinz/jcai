@@ -1,8 +1,8 @@
 class Teacher::QuestionsController < ApplicationController
   layout 'teacher'
   before_filter :get_teacher_and_course, :get_exam
-  # GET /teacher/questions
-  # GET /teacher/questions.json
+  # GET /teacher/courses/1/exams/1/questions
+  # GET /teacher/courses/1/exams/1/questions.json
   def index
     @questions = Question.where(:exam_id => @exam.id).order(:position).page(params[:page])
 
@@ -12,8 +12,8 @@ class Teacher::QuestionsController < ApplicationController
     end
   end
 
-  # GET /teacher/questions/1
-  # GET /teacher/questions/1.json
+  # GET /teacher/courses/1/exams/1/questions/1
+  # GET /teacher/courses/1/exams/1/questions/1.json
   def show
     @question = @exam.questions.find(params[:id])
 
@@ -23,8 +23,8 @@ class Teacher::QuestionsController < ApplicationController
     end
   end
 
-  # GET /teacher/questions/new
-  # GET /teacher/questions/new.json
+  # GET /teacher/courses/1/exams/1/questions/new
+  # GET /teacher/courses/1/exams/1/questions/new.json
   def new
     @question = Question.new
 
@@ -34,13 +34,13 @@ class Teacher::QuestionsController < ApplicationController
     end
   end
 
-  # GET /teacher/questions/1/edit
+  # GET /teacher/courses/1/exams/1/questions/1/edit
   def edit
     @question = @exam.questions.find(params[:id])
   end
 
-  # POST /teacher/questions
-  # POST /teacher/questions.json
+  # POST /teacher/courses/1/exams/1/questions
+  # POST /teacher/courses/1/exams/1/questions.json
   def create
     @question = Question.new(params[:question])
 		@exam.questions << @question
@@ -56,8 +56,8 @@ class Teacher::QuestionsController < ApplicationController
     end
   end
 
-  # PUT /teacher/questions/1
-  # PUT /teacher/questions/1.json
+  # PUT /teacher/courses/1/exams/1/questions/1
+  # PUT /teacher/courses/1/exams/1/questions/1.json
   def update
     @question = @exam.questions.find(params[:id])
 
@@ -72,8 +72,8 @@ class Teacher::QuestionsController < ApplicationController
     end
   end
 
-  # DELETE /teacher/questions/1
-  # DELETE /teacher/questions/1.json
+  # DELETE /teacher/courses/1/exams/1/questions/1
+  # DELETE /teacher/courses/1/exams/1/questions/1.json
   def destroy
     @question = @exam.questions.find(params[:id])
     @question.destroy

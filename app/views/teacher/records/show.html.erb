@@ -1,0 +1,17 @@
+<% @page_title=@course.name+"课程管理"  -%>
+<div class="title">答卷信息</div>
+<div class="content">
+答卷人:<%=h @record.student.name %><br />
+开始时间：<%=h datetime_string(@record.started_at) %><br />
+交卷时间：<%=h datetime_string(@record.ended_at) %><br />
+共用时：<%= h @record.minute_spaned %>分钟 <br />
+得分：  <%=h @record.score %> <br />
+答卷情况：<br />
+<% @record.answer_string.split("-").each  do |ans|
+    ans =~ /(\d)([ABCD])/
+-%>
+题目ID:<%= $1 %>，选<%= $2 %><br />
+<% end -%>
+</div>
+<br />
+<%= link_to 'Back', teacher_course_exam_records_path(@course, @exam) %>

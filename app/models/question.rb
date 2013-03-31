@@ -2,6 +2,8 @@ class Question < ActiveRecord::Base
   belongs_to :exam
 	acts_as_list :scope => :exam
   attr_accessible :answer,:question, :choices, :position, :unit_score
+	validates :question_img, :length => {:maximum => 100*1024, :too_long => "should less than 100KB"}
+	validates :choices_img, :length => {:maximum => 100*1024, :too_long => "should less than 100KB"}
   validates_presence_of :answer, :unit_score, :question_img, :choices_img
   validates_format_of :question_content_type, :with => /^image/, :message => "must be image/*"
   validates_format_of :choices_content_type, :with => /^image/, :message => "must be image/*"
@@ -20,10 +22,5 @@ class Question < ActiveRecord::Base
       self.choices_content_type = choices_field.content_type.chomp
       self.choices_img = choices_field.read
     end
-  end
-
-  def validate
-     errors.add(:question_img, "should less than 100KB") unless self.question_img.nil? || self.question_img.length <= 100*1024
-     errors.add(:choices_img, "should less than 100KB") unless self.choices_img.nil? || self.choices_img.length <= 100*1024
   end
 end
