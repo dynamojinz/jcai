@@ -17,8 +17,8 @@ odd_or_even = 1 - odd_or_even
   <tr class="ListLine<%= odd_or_even %>">
     <td><%=h exam.name %></td>
     <td><%=h exam.time_limit %>分钟</td>
-    <td> h exam.questions.size </td>
-    <td> h exam.total_score </td>
+	<td><%=h exam.questions.size %></td>
+	<td><%=h exam.total_score %></td>
     <td><%=h exam.updated_at %></td>
     <td><%= link_to '试题管理', teacher_course_exam_questions_path(@course, exam) %></td>
     <td><%= link_to '测验记录', teacher_course_exam_records_path(@course, exam) %></td>

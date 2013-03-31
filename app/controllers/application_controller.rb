@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
   
   #--------------------------Course Module------------------------------------
   def get_exam
-    @exam = @course.exams.find(params[:ex_id])
+    @exam = @course.exams.find(params[:exam_id])
   rescue
     handle_error "参数错误！"
   end

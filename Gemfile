@@ -49,3 +49,6 @@ gem 'kaminari'
 # If things still goes wrong, try to envoke i
 # 'magic_encoding' in terminal.
 gem 'magic_encoding'
+
+# Now acts_as_list is not bundled by default
+gem 'acts_as_list'

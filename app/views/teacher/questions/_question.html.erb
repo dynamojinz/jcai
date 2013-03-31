@@ -1,0 +1,16 @@
+﻿<div class="question">
+  <div class="qtitle">
+  试题<%=h question.position %>:  
+  </div>
+  <div class="img_question"><img src="<%= question_teacher_course_exam_question_url(@course, @exam, question) %>" /></div>
+  <div class="img_choices"><img src="<%= choices_teacher_course_exam_question_url(@course, @exam, question) %>" /></div>
+  <div class="answer">答案：<%=h question.answer %>&nbsp; 分值：<%= h question.unit_score %></div>
+  <div class="control">
+    <%= link_to '上升', move_up_teacher_course_exam_question_path(@course, @exam, question), :method => :post %> | 
+    <%= link_to '下降', move_down_teacher_course_exam_question_path(@course, @exam, question), :method => :post %>
+    &nbsp;&nbsp;
+    <%= link_to '显示', [:teacher, @course, @exam, question] %> | 
+    <%= link_to '修改', edit_teacher_course_exam_question_path(@course, @exam, question) %> |
+	<%= link_to '删除', [:teacher, @course, @exam, question], :method => :delete, :data => {:confirm => '确认要删除该试题吗?'} %>
+  </div>
+</div>

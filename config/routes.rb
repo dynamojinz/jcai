@@ -3,22 +3,32 @@ Jcai::Application.routes.draw do
 
 	namespace :teacher do
 		resources :courses do
-
+			# spetial actions of :courses
+			member do
+				get "students"
+			end
+			# sub resources
+			resources :notifies, :messages
+			# coursewares
 			resources :coursewares do
 				member do 
 					get "download"
 				end
 			end
-
+			# exams as sub resources of course
 			resources :exams do
-				resources :questions, :records
+				resources :records
+				# questions as sub resources of exam
+				resources :questions do
+					member do
+						get "question"
+						get "choices"
+						post "move_up"
+						post "move_down"
+					end
+				end
 			end
 
-			resources :notifies, :messages
-
-			member do
-				get "students"
-			end
 		end
 
 	end

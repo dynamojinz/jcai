@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  question_content_type: MyString
+  question_img: 
+  choices_content_type: MyString
+  choices_img: 
+  answer: MyString
+  unit_score: 1
+  position: 1
+  exam: 
+
+two:
+  question_content_type: MyString
+  question_img: 
+  choices_content_type: MyString
+  choices_img: 
+  answer: MyString
+  unit_score: 1
+  position: 1
+  exam: 

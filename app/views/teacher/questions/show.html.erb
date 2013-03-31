@@ -1,0 +1,6 @@
+<% @page_title=@course.name+"课程管理"  -%>
+<div class="title">试题信息</div>
+<%= render @question %>
+<br />
+<%= link_to 'Edit', edit_teacher_course_exam_question_path(@course, @exam, @question) %> |
+<%= link_to 'Back', teacher_course_exam_questions_path(@course, @exam) %>
