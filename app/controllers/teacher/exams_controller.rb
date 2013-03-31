@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Teacher::ExamsController < ApplicationController
   layout 'teacher'
 	before_filter :get_teacher_and_course

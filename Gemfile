@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.12'
 
@@ -40,3 +40,12 @@ gem 'jquery-rails'
 
 # Use kaminari as default paginator
 gem 'kaminari'
+
+# Use magic_encoding to allow non-ascii characters.
+# otherwise, you must add following 2 lines to every 
+# ruby files that has non-ascii characters.
+# #!/bin/env ruby
+# # encoding: utf-8
+# If things still goes wrong, try to envoke i
+# 'magic_encoding' in terminal.
+gem 'magic_encoding'

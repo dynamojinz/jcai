@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class User
   attr_accessor  :name, :password, :type, :id, :origin_password, :new_password, :new_password_copy
   

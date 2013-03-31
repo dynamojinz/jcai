@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::NoticesController < ApplicationController
 	layout 'admin'
   before_filter :get_admin

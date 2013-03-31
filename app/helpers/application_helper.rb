@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ApplicationHelper
   def date_string(date)
     date.strftime("%y-%m-%d")

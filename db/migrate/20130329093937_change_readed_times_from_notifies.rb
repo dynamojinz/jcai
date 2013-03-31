@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ChangeReadedTimesFromNotifies < ActiveRecord::Migration
   def up
 		change_column :notifies, :readed_times, :integer, :default => 0

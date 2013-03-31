@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Jcai::Application.routes.draw do
 
 	namespace :teacher do

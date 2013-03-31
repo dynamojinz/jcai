@@ -1,6 +1,6 @@
-<h1>Editing teacher_course</h1>
+<% @page_title=@course.name+"课程管理" -%>
 
+<div class="title"><%= @course.name %>课程安排</div>
 <%= render 'form' %>
 
-<%= link_to 'Show', @teacher_course %> |
-<%= link_to 'Back', teacher_courses_path %>
+<%= link_to 'Back', [:teacher, @course] %>

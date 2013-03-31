@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Courseware < ActiveRecord::Base
 	belongs_to :course
   attr_accessible :content_type, :course, :description, :downloaded, :file_data, :file_name, :file_size, :courseware

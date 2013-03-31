@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateCoursewares < ActiveRecord::Migration
   def change
     create_table :coursewares do |t|

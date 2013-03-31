@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::CoursesController < ApplicationController
 	layout 'admin'
   before_filter :get_admin

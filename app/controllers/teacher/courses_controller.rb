@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Teacher::CoursesController < ApplicationController
   layout 'teacher'
 	# get default @courses = @teacher.courses
