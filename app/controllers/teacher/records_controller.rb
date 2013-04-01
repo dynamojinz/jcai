@@ -8,7 +8,7 @@ class Teacher::RecordsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @records }
+      format.json { render :json => @records }
     end
   end
 
@@ -19,7 +19,7 @@ class Teacher::RecordsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @record }
+      format.json { render :json => @record }
     end
   end
 

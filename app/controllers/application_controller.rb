@@ -46,18 +46,21 @@ class ApplicationController < ActionController::Base
     end
   end
   #-------------------------Student Module-----------------------------------
-  def get_student_and_courses
-    unless @student = get_student
+  def get_student
+    unless @student = _get_student
       handle_error("请登录先！")
       return false
     end
-    @courses = @student.courses
-    @course = @courses.find(params[:id]) if params[:id]
+  end
+	
+  def get_student_and_course
+		get_student
+    @course = @student.courses.find(params[:course_id])
   rescue
     handle_error "参数错误！"
   end
   
-  def get_student
+  def _get_student
     if session[:user_type] == 's' and session[:user_id]
       student = Student.find(session[:user_id])
     end
