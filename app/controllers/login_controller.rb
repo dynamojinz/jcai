@@ -20,9 +20,9 @@ class LoginController < ApplicationController
           session[:user_type] = @user.type
           case @user.type
             when 't'
-              redirect_to :controller => 'teacher/courses', :action => 'index'
+              redirect_to teacher_courses_path
             when 's'
-              redirect_to :controller => 'student/course', :action => 'index'
+              redirect_to student_courses_path
             when 'a'
 							#redirect_to :controller => 'course_admin', :action => 'list'
 							redirect_to admin_courses_path

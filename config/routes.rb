@@ -26,11 +26,28 @@ Jcai::Application.routes.draw do
 						post "move_up"
 						post "move_down"
 					end
-				end
+				end  # end of questions
+			end    # end of exams
+		end      # end of courses
+	end
+
+	namespace :student do
+		resources :courses do
+			member do
+				get "arrangement"
 			end
-
 		end
+	end
 
+	namespace :admin do
+	  resources :teachers, :students, :notices
+		resources :courses do
+			member do
+				get "students", :action => "students"
+				post "students", :action => "add_students"
+				delete "students", :action => "remove_students"
+			end
+		end
 	end
 
   root :to => 'login#welcome'
@@ -46,12 +63,6 @@ Jcai::Application.routes.draw do
   get "login/notice"
 
   get "login/change_password"
-
-  resources :students
-
-	 namespace :admin do
-		 resources :courses, :teachers, :students, :notices
-	 end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

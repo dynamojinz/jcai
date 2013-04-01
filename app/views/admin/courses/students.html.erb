@@ -1,0 +1,55 @@
+﻿<h1><%= @course.name %>课程学生管理</h1>
+<hr>
+<div id="course_left">
+<h5>参加该课程的学生<h5>
+<hr>
+<%= form_tag(students_admin_course_path(@course), :method => :delete) do -%>
+  <table width="350">
+    <tr class="ListTitle">
+      <th width="100">学号</th>
+      <th width="100">姓名</th>
+    </tr>
+    
+  <% 
+  odd_or_even = 0
+  for student in @students
+  odd_or_even = 1 - odd_or_even
+  -%>
+    <tr class="ListLine<%= odd_or_even %>">
+      <td><%=h student.stu_no %></td>
+      <td><%=h student.name %></td>
+      <td><%= check_box 'to_be_removed', student.id, {}, 'yes', 'no' %></td>
+    </tr>
+  <% end %>
+   <tr>
+    <td align="right" colspan="3"><%= submit_tag '调离该课程' %></td>
+  </tr>
+  </table>
+  <% end -%>
+</div>
+<div id="course_right">
+  <h5>未参加该课程的学生</h5>
+  <hr>
+  <%= form_tag students_admin_course_path(@course), :method => :post do -%>
+  <table width="430">
+    <tr class="ListTitle">
+      <th width="200">学号</th>
+      <th width="200">姓名</th>
+    </tr>
+  <% 
+  odd_or_even = 0
+  for student in @other_students
+  odd_or_even = 1 - odd_or_even
+  -%>
+    <tr class="ListLine<%= odd_or_even %>">
+      <td><%=h student.stu_no %></td>
+      <td><%=h student.name %></td>
+      <td><%= check_box 'to_be_added', student.id, {}, 'yes', 'no' %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td align="right" colspan="3"><%= submit_tag '加入该课程' %></td>
+  </tr>
+  </table>
+  <% end -%>
+</div>
