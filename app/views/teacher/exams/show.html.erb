@@ -1,0 +1,16 @@
+<% @page_title=@course.name+"课程管理"  -%>
+
+<div class="title"><%= h @course.name %>课程－－查看测验</div>
+<p>测验名称：<%= h @exam.name %></p>
+<p>时间限制：<%= h @exam.time_limit %>分钟</p>
+<p>试题数：<%= h @exam.name %></p>
+<p>总分：<%= h @exam.name %></p>
+<p>最后更新：<%= h @exam.updated_at %>
+<p>课件说明：</br>
+<%= simple_format(h(@exam.description)) %>
+</p>
+<p><%=  link_to '预览', teacher_course_exam_questions_path(@course, @exam) %></p>
+
+
+<%= link_to 'Edit', edit_teacher_course_exam_path(@course, @exam) %> |
+<%= link_to 'Back', teacher_course_exams_path(@course) %>

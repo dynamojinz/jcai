@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315014308) do
+ActiveRecord::Schema.define(:version => 20130402122036) do
 
   create_table "admins", :force => true do |t|
     t.string   "name"
@@ -40,6 +40,44 @@ ActiveRecord::Schema.define(:version => 20130315014308) do
   add_index "courses_students", ["course_id"], :name => "index_courses_students_on_course_id"
   add_index "courses_students", ["student_id"], :name => "index_courses_students_on_student_id"
 
+  create_table "coursewares", :force => true do |t|
+    t.integer  "course_id"
+    t.string   "file_name"
+    t.string   "content_type"
+    t.integer  "file_size"
+    t.binary   "file_data"
+    t.text     "description"
+    t.integer  "downloaded"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "coursewares", ["course_id"], :name => "index_coursewares_on_course_id"
+
+  create_table "exams", :force => true do |t|
+    t.string   "name"
+    t.integer  "time_limit"
+    t.text     "description"
+    t.integer  "course_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "exams", ["course_id"], :name => "index_exams_on_course_id"
+
+  create_table "messages", :force => true do |t|
+    t.text     "question"
+    t.text     "reply"
+    t.datetime "replied_at"
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "messages", ["course_id"], :name => "index_messages_on_course_id"
+  add_index "messages", ["student_id"], :name => "index_messages_on_student_id"
+
   create_table "notices", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -47,6 +85,46 @@ ActiveRecord::Schema.define(:version => 20130315014308) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "notifies", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "readed_times", :default => 0
+    t.integer  "course_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "notifies", ["course_id"], :name => "index_notifies_on_course_id"
+
+  create_table "questions", :force => true do |t|
+    t.string   "question_content_type"
+    t.binary   "question_img"
+    t.string   "choices_content_type"
+    t.binary   "choices_img"
+    t.string   "answer"
+    t.integer  "unit_score"
+    t.integer  "position"
+    t.integer  "exam_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "questions", ["exam_id"], :name => "index_questions_on_exam_id"
+
+  create_table "records", :force => true do |t|
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.integer  "score"
+    t.integer  "exam_id"
+    t.integer  "student_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.text     "answer_string"
+  end
+
+  add_index "records", ["exam_id"], :name => "index_records_on_exam_id"
+  add_index "records", ["student_id"], :name => "index_records_on_student_id"
 
   create_table "students", :force => true do |t|
     t.string   "stu_no"

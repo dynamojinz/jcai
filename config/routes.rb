@@ -1,4 +1,75 @@
+# -*- encoding : utf-8 -*-
 Jcai::Application.routes.draw do
+
+	namespace :teacher do
+		resources :courses do
+			# spetial actions of :courses
+			member do
+				get "students"
+			end
+			# sub resources
+			resources :notifies, :messages
+			# coursewares
+			resources :coursewares do
+				member do 
+					get "download"
+				end
+			end
+			# exams as sub resources of course
+			resources :exams do
+				resources :records
+				# questions as sub resources of exam
+				resources :questions do
+					member do
+						get "question"
+						get "choices"
+						post "move_up"
+						post "move_down"
+					end
+				end  # end of questions
+			end    # end of exams
+		end      # end of courses
+	end
+
+	namespace :student do
+		resources :courses do
+			member do
+				get "arrangement"
+			end
+			# sub resources of courses
+			resources :notifies, :messages
+			# coursewares
+			resources :coursewares do
+				member do
+					get "download"
+				end
+			end
+			# exams
+			resources :exams do
+				member do
+					get "start"
+					post "check"
+				end
+				resources :questions do
+					member do
+						get "question"
+						get "choices"
+					end
+				end
+			end
+		end
+	end
+
+	namespace :admin do
+	  resources :teachers, :students, :notices
+		resources :courses do
+			member do
+				get "students", :action => "students"
+				post "students", :action => "add_students"
+				delete "students", :action => "remove_students"
+			end
+		end
+	end
 
   root :to => 'login#welcome'
 
@@ -14,11 +85,7 @@ Jcai::Application.routes.draw do
 
   get "login/change_password"
 
-  resources :students
-
-	 namespace :admin do
-		 resources :courses, :teachers, :students, :notices
-	 end
+  post "login/change_password"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

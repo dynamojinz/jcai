@@ -1,0 +1,34 @@
+<% @page_title= "欢迎你进入#{@course.name}课程学习" -%>
+  <div class="title"><%= @course.name %>课程－－测验列表</div>
+
+  <table>
+  <tr class="ListTitle">
+    <th>测验名称</th>
+    <th>时间限制</th>
+    <th>试题数</th>
+    <th>总分</th>
+    <th>更新时间</th>
+  </tr>
+    
+<% 
+odd_or_even = 0
+for exam in @exams
+odd_or_even = 1 - odd_or_even
+-%>
+  <tr class="ListLine<%= odd_or_even %>">
+    <td><%=h exam.name %></td>
+    <td><%=h exam.time_limit %>分钟</td>
+    <td><%=h exam.questions.size %></td>
+    <td><%=h exam.total_score %></td>
+    <td><%=h datetime_string(exam.updated_at) %></td>
+    <td><%= link_to '显示', [:student, @course, exam] %></td>
+  </tr>
+<% end %>
+  </table>
+
+  <%= paginate @exams %>
+
+  <br />
+
+  <%= link_to '返回', [:student, @course] %>
+

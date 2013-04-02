@@ -1,0 +1,22 @@
+<% @page_title=@course.name+"课程管理" -%>
+<div class="title"><%= @course.name %>课程－－学生列表</div>
+ <table>
+  <tr class="ListTitle">
+    <th>学号</th>
+    <th>姓名</th>
+  </tr>
+  
+<% 
+odd_or_even = 0
+for student in @students
+odd_or_even = 1 - odd_or_even
+-%>
+  <tr class="ListLine<%= odd_or_even %>">
+    <td><%=h student.stu_no %></td>
+    <td><%=h student.name %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= link_to '返回', [:teacher, @course] %>
+</div>

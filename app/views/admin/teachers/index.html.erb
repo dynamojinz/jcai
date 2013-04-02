@@ -1,27 +1,24 @@
-<h1>Listing admin_teachers</h1>
-
-<table>
-  <tr>
-    <th>Tea no</th>
-    <th>Name</th>
-    <th>Hashed password</th>
-    <th></th>
-    <th></th>
-    <th></th>
+<h1>教师列表</h1>
+<hr>
+<table width="400">
+  <tr class="ListTitle">
+   <th width="100">教工号</th>
+   <th width="100">姓名</th>
   </tr>
-
-<% @admin_teachers.each do |admin_teacher| %>
-  <tr>
-    <td><%= admin_teacher.tea_no %></td>
-    <td><%= admin_teacher.name %></td>
-    <td><%= admin_teacher.hashed_password %></td>
-    <td><%= link_to 'Show', [:admin, admin_teacher] %></td>
-    <td><%= link_to 'Edit', edit_admin_teacher_path(admin_teacher) %></td>
-    <td><%= link_to 'Destroy', [:admin, admin_teacher], :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+<% 
+  odd_or_even = 0
+  for teacher in @teachers 
+    odd_or_even = 1 - odd_or_even
+-%>
+  <tr class="ListLine<%= odd_or_even %>">
+    <td><%=h teacher.tea_no %></td>
+    <td><%=h teacher.name %></td>
+    <td><%= link_to '显示', [:admin, teacher] %></td>
+    <td><%= link_to '修改', edit_admin_teacher_path(teacher) %></td>
+	<td><%= link_to '删除', [:admin, teacher], :method => :delete, :data => {:confirm => '确认要删除该教师吗?'} %></td>
   </tr>
-<% end %>
+<% end %> 
 </table>
-
+<%= paginate @teachers %>
 <br />
-
-<%= link_to 'New Teacher', new_admin_teacher_path %>
+<%= link_to '添加教师', new_admin_teacher_path %>

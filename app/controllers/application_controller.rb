@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
@@ -22,35 +23,44 @@ class ApplicationController < ActionController::Base
     end
   end  
   #-----------------------Teacher Module------------------------------------
-  def get_teacher_and_courses
-    unless @teacher = get_teacher
+  def get_teacher
+    unless @teacher = _get_teacher
       handle_error("请登录先！") 
       return false
     end
-    @courses = @teacher.courses
-    @course = @courses.find(params[:id]) if params[:id]
+  end
+
+  def get_teacher_and_course
+    unless @teacher = _get_teacher
+      handle_error("请登录先！") 
+      return false
+    end
+    @course = @teacher.courses.find(params[:course_id])
   rescue
     handle_error "参数错误！"
   end
   
-  def get_teacher
+  def _get_teacher
     if session[:user_type] == 't' and session[:user_id]
       teacher = Teacher.find(session[:user_id])
     end
   end
   #-------------------------Student Module-----------------------------------
-  def get_student_and_courses
-    unless @student = get_student
+  def get_student
+    unless @student = _get_student
       handle_error("请登录先！")
       return false
     end
-    @courses = @student.courses
-    @course = @courses.find(params[:id]) if params[:id]
+  end
+	
+  def get_student_and_course
+		get_student
+    @course = @student.courses.find(params[:course_id])
   rescue
     handle_error "参数错误！"
   end
   
-  def get_student
+  def _get_student
     if session[:user_type] == 's' and session[:user_id]
       student = Student.find(session[:user_id])
     end
@@ -58,22 +68,11 @@ class ApplicationController < ActionController::Base
   
   #--------------------------Course Module------------------------------------
   def get_exam
-    @exam = @course.exams.find(params[:ex_id])
+    @exam = @course.exams.find(params[:exam_id])
   rescue
     handle_error "参数错误！"
   end
   
-  def get_question
-    @question = @exam.questions.find(params[:qs_id])
-  rescue
-    handle_error "参数错误！"
-  end
-  
-  def get_record
-    @record = @exam.records.find(params[:rc_id])
-  rescue
-    handle_error "参数错误！"
-  end
   
   def get_notify
     @notify = @course.notifies.find(params[:nt_id])

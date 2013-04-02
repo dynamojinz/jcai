@@ -1,0 +1,12 @@
+<% @page_title="#{@student.name}同学课程首页" -%>
+<div class="title">请选择要学习的课程</div>
+<ul>
+<% for course in @courses -%>
+    <li>
+    <%= h course.name %>(共<%= h course.coursewares.size %>个课件,<%= h course.exams.size %>个测验,<%= h course.notifies.size %>个通知,<%= h course.messages.size%>个留言) &nbsp;&nbsp;
+    <%= link_to '进入课程首页', [:student, course] %>
+    </li>
+<% end %>
+</ul>
+<br />
+

@@ -1,0 +1,9 @@
+<% @page_title=@course.name+"课程管理"  -%>
+ <div class="title">揆写通知</div>
+ <div class="content">
+
+<%= render 'form' %>
+
+</div>
+
+<%= link_to 'Back', teacher_course_notifies_path(@course) %>

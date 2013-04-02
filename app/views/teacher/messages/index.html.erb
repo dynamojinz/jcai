@@ -1,0 +1,9 @@
+<% @page_title=@course.name+"课程管理"  -%>
+<div class="title"><%= @course.name %>课程－－学生留言</div>
+
+<%= render(:partial => 'message',
+		 :collection => @messages,
+		 :spacer => "<br />")
+%>
+<%= paginate @messages %>
+<%= link_to '返回', [:teacher, @course] %></p>

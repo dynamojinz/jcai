@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= @page_title || @exam.name %></title>
+  <%= stylesheet_link_tag 'scaffold', 'jcai', 'student','exam', :media => "all" %>
+  <%= javascript_include_tag "exam","xScrollStick" %>
+</head>
+<body>
+    <!--试卷信息-->
+    <div id="info">
+        <div id="name"><%= h @exam.name %></div>
+        <div id="details"><%= h "限时:#{@exam.time_limit}分钟  总分：#{@exam.total_score}分" %></div>
+    </div>
+    <!--答卷情况-->
+    <div>
+    开始时间：<%= datetime_string(@record.started_at) %> <br />
+    交卷时间：<%= datetime_string(@record.ended_at) %> <br />
+    用时：<%= @record.minute_spaned %>分钟 <br />
+    得分:<%= h @record.score %> <br />
+    答题情况：<br />
+    <%= @results.join("<br />")%>
+    </div>
+    <input value="关闭窗口" type="button" onclick="window.close();" />
+     <div id="footer" align="center">
+        All Rights Resered by Jin 2007~2010
+     </div>
+</body>
+</html>
+ 

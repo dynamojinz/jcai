@@ -1,0 +1,35 @@
+<%= form_for([:teacher, @course, @exam, @question]) do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this teacher_question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :question %><br />
+    <%= f.file_field :question %>
+  </div>
+  <div class="field">
+    <%= f.label :choices %><br />
+    <%= f.file_field :choices %>
+  </div>
+  <div class="field">
+    <%= f.label :answer %><br />
+	<% %w{A B C D}.each do |ch| -%>
+		<%= f.radio_button :answer, ch %><%= ch %>
+	<% end -%>
+  </div>
+  <div class="field">
+    <%= f.label :unit_score %><br />
+	<%= f.text_field :unit_score, :size => 10 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

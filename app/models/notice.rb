@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Notice < ActiveRecord::Base
   attr_accessible :content, :published_at, :title
 

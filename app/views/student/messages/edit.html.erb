@@ -1,0 +1,7 @@
+<% @page_title= "欢迎你进入#{@course.name}课程学习" -%>
+<div class="title">修改留言</div>
+<div class="content">
+<%= render 'form' %>
+</div>
+<%= link_to '显示', [:student, @course, @message] %> |
+<%= link_to '返回', student_course_messages_path(@course) %>

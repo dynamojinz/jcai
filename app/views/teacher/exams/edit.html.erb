@@ -1,0 +1,8 @@
+<% @page_title=@course.name+"课程管理"  -%>
+<div class="title">修改测验</div>
+<div class="content">
+<%= render 'form' %>
+</div>
+
+<%= link_to 'Show', [:teacher, @course, @exam] %> |
+<%= link_to 'Back', teacher_course_exams_path(@course) %>

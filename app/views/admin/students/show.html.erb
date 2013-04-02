@@ -1,17 +1,12 @@
 <p>
   <b>Stu no:</b>
-  <%= @admin_student.stu_no %>
+  <%= @student.stu_no %>
 </p>
 
 <p>
   <b>Name:</b>
-  <%= @admin_student.name %>
+  <%= @student.name %>
 </p>
 
-<p>
-  <b>Hashed password:</b>
-  <%= @admin_student.hashed_password %>
-</p>
-
-<%= link_to 'Edit', edit_admin_student_path(@admin_student) %> |
+<%= link_to 'Edit', edit_admin_student_path(@student) %> |
 <%= link_to 'Back', admin_students_path %>

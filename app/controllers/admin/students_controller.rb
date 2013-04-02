@@ -1,56 +1,57 @@
+# -*- encoding : utf-8 -*-
 class Admin::StudentsController < ApplicationController
 	layout 'admin'
   before_filter :get_admin
   # GET /admin/students
   # GET /admin/students.json
   def index
-    @admin_students = Admin::Student.all
+    @students = Student.order(:stu_no).page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @admin_students }
+      format.json { render :json => @students }
     end
   end
 
   # GET /admin/students/1
   # GET /admin/students/1.json
   def show
-    @admin_student = Admin::Student.find(params[:id])
+    @student = Student.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @admin_student }
+      format.json { render :json => @student }
     end
   end
 
   # GET /admin/students/new
   # GET /admin/students/new.json
   def new
-    @admin_student = Admin::Student.new
+    @student = Student.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @admin_student }
+      format.json { render :json => @student }
     end
   end
 
   # GET /admin/students/1/edit
   def edit
-    @admin_student = Admin::Student.find(params[:id])
+    @student = Student.find(params[:id])
   end
 
   # POST /admin/students
   # POST /admin/students.json
   def create
-    @admin_student = Admin::Student.new(params[:student])
+    @student = Student.new(params[:student])
 
     respond_to do |format|
-      if @admin_student.save
-        format.html { redirect_to [:admin, @admin_student], :notice => 'Student was successfully created.' }
-        format.json { render :json => @admin_student, :status => :created, :location => @admin_student }
+      if @student.save
+        format.html { redirect_to [:admin, @student], :notice => 'Student was successfully created.' }
+        format.json { render :json => @student, :status => :created, :location => @student }
       else
         format.html { render :action => "new" }
-        format.json { render :json => @admin_student.errors, :status => :unprocessable_entity }
+        format.json { render :json => @student.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -58,15 +59,15 @@ class Admin::StudentsController < ApplicationController
   # PUT /admin/students/1
   # PUT /admin/students/1.json
   def update
-    @admin_student = Admin::Student.find(params[:id])
+    @student = Student.find(params[:id])
 
     respond_to do |format|
-      if @admin_student.update_attributes(params[:student])
-        format.html { redirect_to [:admin, @admin_student], :notice => 'Student was successfully updated.' }
+      if @student.update_attributes(params[:student])
+        format.html { redirect_to [:admin, @student], :notice => 'Student was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
-        format.json { render :json => @admin_student.errors, :status => :unprocessable_entity }
+        format.json { render :json => @student.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -74,8 +75,8 @@ class Admin::StudentsController < ApplicationController
   # DELETE /admin/students/1
   # DELETE /admin/students/1.json
   def destroy
-    @admin_student = Admin::Student.find(params[:id])
-    @admin_student.destroy
+    @student = Student.find(params[:id])
+    @student.destroy
 
     respond_to do |format|
       format.html { redirect_to admin_students_url }

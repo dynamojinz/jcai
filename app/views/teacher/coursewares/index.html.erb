@@ -1,0 +1,33 @@
+<% @page_title=@course.name+"课程管理"  -%>
+  <div class="title"><%= @course.name %>课程－－课件管理</div>
+  <table>
+  <tr class="ListTitle">
+    <th>文件名</th>
+    <th>类型</th>
+    <th>大小</th>
+    <th>上传时间</th>
+    <th>下载次数</th>
+  </tr>
+  
+<% 
+odd_or_even = 0
+for courseware in @coursewares
+odd_or_even = 1 - odd_or_even
+-%>
+  <tr class="ListLine<%= odd_or_even %>">
+    <td><%=link_to h(courseware.file_name), download_teacher_course_courseware_path(@course, courseware) %></td>
+    <td><%=h courseware.content_type %></td>
+    <td><%=h courseware.file_size/1024 %>KB</td>
+    <td><%=h courseware.updated_at %></td>
+    <td><%=h courseware.downloaded %></td>
+    <td><%= link_to '显示', [:teacher, @course, courseware] %></td>
+    <td><%= link_to '修改', edit_teacher_course_courseware_path(@course, courseware) %></td>
+	<td><%= link_to '删除', [:teacher, @course, courseware], :method => :delete, :data => {:confirm => '确认要删除该课件吗?'} %></td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @coursewares%>
+<br />
+
+<p><%= link_to '上传课件', new_teacher_course_courseware_path(@course) %> |
+<%= link_to '返回', [:teacher, @course] %></p>
