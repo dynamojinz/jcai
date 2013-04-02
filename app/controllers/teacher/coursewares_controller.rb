@@ -88,8 +88,9 @@ class Teacher::CoursewaresController < ApplicationController
   # GET /teacher/courses/1/coursewares/1/download
   def download
     @courseware = @course.coursewares.find(params[:id])
-		@courseware.downloaded += 1
-		@courseware.save()
+		# Now i choose not to statistic teachers' downloading.
+		#@courseware.downloaded += 1
+		#@courseware.save()
     user_agent = request.user_agent.downcase
     send_data(@courseware.file_data,
 							:filename => user_agent.include?("msie") ? CGI::escape( @courseware.file_name ) :@courseware.file_name ,

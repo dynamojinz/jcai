@@ -17,7 +17,7 @@
       <div class="subleft"></div>
       <div class="subright">
         <% for course in @teacher.courses -%>
-          <%= link_to course.name, teacher_course_path(course) %><br />
+          <%= link_to course.name, [:teacher, course] %><br />
         <% end -%>
       </div>
       <div class="subtitle">个人设置</div>

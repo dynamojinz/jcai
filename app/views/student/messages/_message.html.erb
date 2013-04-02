@@ -1,0 +1,16 @@
+  <div id="message">
+    <div class="mtitle"><%= h(message.student.name) if message.student %>同学发表于<%=h datetime_string(message.created_at) %></div>
+    <div class="mcontent"><%= simple_format(h(message.question)) %></div>
+    <% if message.replied_at -%>
+    <div class="mtitle"><%= h @course.teacher.name %>老师回复于<%= h datetime_string(message.replied_at) %></div>
+    <div class="mcontent"><%= simple_format(h(message.reply)) %></div>
+    <% end -%>
+    <div class="control">
+    <%= link_to '查看', [:student, @course, message] %> 
+    <% if message.replied_at.nil? and (message.student && message.student == @student) -%>
+    | <%= link_to '编缉', edit_student_course_message_path(@course, message) %> 
+	| <%= link_to '删除', [:student, @course, message], :method => :delete, :data => {:confirm => '确认要删除该留言吗?'} %>
+    <% end -%>
+    </div>
+  </div>
+  <br />

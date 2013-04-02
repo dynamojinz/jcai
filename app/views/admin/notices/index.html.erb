@@ -1,25 +1,25 @@
-<h1>Listing admin_notices</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
+<h1>教学通知</h1>
+<hr>
+<table width="400">
+  <tr class="ListTitle">
+    <th width="200">标题</th>
+    <th width="80">发布时间</th>
   </tr>
-
-<% @admin_notices.each do |admin_notice| %>
-  <tr>
-	<td><%= admin_notice.title %></td>
-	<td><%= admin_notice.content %></td>
-    <td><%= link_to 'Show', [:admin, admin_notice] %></td>
-    <td><%= link_to 'Edit', edit_admin_notice_path(admin_notice) %></td>
-    <td><%= link_to 'Destroy', [:admin, admin_notice], :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+<% 
+odd_or_even = 0
+for notice in @notices 
+odd_or_even = 1 - odd_or_even
+-%>
+  <tr class="ListLine<%= odd_or_even %>">
+    <td><%=h notice.title %></td>
+    <td><%=h date_string(notice.updated_at) %></td>
+    <td><%= link_to '显示', [:admin, notice] %></td>
+    <td><%= link_to '修改', edit_admin_notice_path(notice) %></td>
+	<td><%= link_to '删除', [:admin, notice], :method => :delete, :data => {:confirm => '确认删除该通知吗?'} %></td>
   </tr>
 <% end %>
 </table>
-
+<%= paginate @notices %>
 <br />
 
 <%= link_to 'New Notice', new_admin_notice_path %>

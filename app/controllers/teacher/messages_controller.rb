@@ -61,6 +61,7 @@ class Teacher::MessagesController < ApplicationController
   # PUT /teacher/courses/1/messages/1.json
   def update
     @message = @course.messages.find(params[:id])
+    params[:message][:replied_at] = Time.now
 
     respond_to do |format|
       if @message.update_attributes(params[:message])

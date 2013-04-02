@@ -1,5 +1,7 @@
-<p id="notice"><%= notice %></p>
+<% @page_title=@course.name+"课程管理"  -%>
 
+<div class="title"><%= h @course.name %>课程－－查看留言</div>
+<%= render @message %>
 
-<%= link_to 'Edit', edit_teacher_message_path(@teacher_message) %> |
-<%= link_to 'Back', teacher_messages_path %>
+  
+<%= link_to '返回', teacher_course_messages_path(@course) %>

@@ -54,7 +54,7 @@
      <ul>
       <% for message in @messages -%>
       <li>
-      <%= link_to h(truncate(message.question, 50)), teacher_course_message_path(@course, message) %>
+	  <%= link_to h(truncate(message.question, :length => 50)), teacher_course_message_path(@course, message) %>
       (<%= h(message.student.name) if message.student %>,<%= datetime_string(message.created_at) %>) &nbsp;
       <%= link_to '回复', edit_teacher_course_message_path(@course, message) %>
       </li>

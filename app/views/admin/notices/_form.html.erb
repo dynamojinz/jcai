@@ -1,10 +1,10 @@
-<%= form_for([:admin, @admin_notice]) do |f| %>
-  <% if @admin_notice.errors.any? %>
+<%= form_for([:admin, @notice]) do |f| %>
+  <% if @notice.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@admin_notice.errors.count, "error") %> prohibited this admin_notice from being saved:</h2>
+      <h2><%= pluralize(@notice.errors.count, "error") %> prohibited this admin_notice from being saved:</h2>
 
       <ul>
-      <% @admin_notice.errors.full_messages.each do |msg| %>
+      <% @notice.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.text_field :content %>
+	<%= f.text_area :content, :cols => 50, :rows => 10 %>
   </div>
   <div class="actions">
     <%= f.submit %>

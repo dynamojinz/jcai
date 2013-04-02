@@ -18,8 +18,9 @@ class Teacher::NotifiesController < ApplicationController
   # GET /teacher/courses/1/notifies/1.json
   def show
     @notify = @course.notifies.find(params[:id])
-		@notify.readed_times += 1
-		@notify.save()
+		# Now i choose not to statistic teachers' reading
+		#@notify.readed_times += 1
+		#@notify.save()
 
     respond_to do |format|
       format.html # show.html.erb

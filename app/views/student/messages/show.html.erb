@@ -1,0 +1,8 @@
+<% @page_title= "欢迎你进入#{@course.name}课程学习" -%>
+
+<div class="title"><%= h @course.name %>课程－－查看留言</div>
+<%= render @message %>
+
+  
+<%= link_to '返回', student_course_messages_path(@course) %>
+

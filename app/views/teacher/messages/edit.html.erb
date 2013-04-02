@@ -1,6 +1,7 @@
-<h1>Editing teacher_message</h1>
-
+<% @page_title=@course.name+"课程管理"  -%>
+<div class="title">回复留言</div>
+<div class="content">
 <%= render 'form' %>
-
-<%= link_to 'Show', @teacher_message %> |
-<%= link_to 'Back', teacher_messages_path %>
+</div>
+<%= link_to '显示', [:teacher, @course, @message] %> |
+<%= link_to '返回', teacher_course_messages_path(@course) %>

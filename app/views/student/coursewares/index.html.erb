@@ -1,0 +1,33 @@
+<% @page_title= "欢迎你进入#{@course.name}课程学习" -%>
+  <div class="title"><%= @course.name %>课程－－课件列表</div>
+  <table>
+  <tr class="ListTitle">
+    <th>文件名</th>
+    <th>类型</th>
+    <th>大小</th>
+    <th>上传时间</th>
+    <th>下载次数</th>
+  </tr>
+  
+<% 
+odd_or_even = 0
+for courseware in @coursewares
+odd_or_even = 1 - odd_or_even
+-%>
+  <tr class="ListLine<%= odd_or_even %>">
+    <td><%=link_to h(courseware.file_name), download_student_course_courseware_path(@course, courseware) %></td>
+    <td><%=h courseware.content_type %></td>
+    <td><%=h courseware.file_size/1024 %>KB</td>
+    <td><%=h datetime_string(courseware.updated_at) %></td>
+    <td><%=h courseware.downloaded %></td>
+    <td><%= link_to '显示', [:student, @course, courseware] %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= paginate @coursewares %>
+
+<br />
+
+<p><%= link_to '返回', [:student, @course] %></p>
+

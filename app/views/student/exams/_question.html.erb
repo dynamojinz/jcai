@@ -1,0 +1,12 @@
+﻿<div class="question">
+  <div class="qtitle">
+  试题<%=h question.position %>:   <span class="UnitScore">(分值:<%= h question.unit_score %>分)</span>
+  </div>
+  <div class="img_question"><img src="<%= url_for question_student_course_exam_question_path(@course, @exam, question) %>" /></div>
+  <div class="img_choices"><img src="<%= url_for choices_student_course_exam_question_path(@course, @exam, question) %>" /></div>
+  <div class="control">
+    <% %w{A B C D}.each do |ch| -%>
+    <%= radio_button 'question_answer', question.id , ch %><%= ch%>
+    <% end -%>
+  </div>
+</div>

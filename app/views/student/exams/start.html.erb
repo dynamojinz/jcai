@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= @page_title || @exam.name %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body onload="calltimer(<%= @exam.time_limit %>)">
+    <!--试卷信息-->
+    <div id="info">
+        <div id="name"><%= h @exam.name %></div>
+        <div id="details"><%= h "限时:#{@exam.time_limit}分钟  总分：#{@exam.total_score}分" %></div>
+    </div>
+    <!--试卷内容-->
+    <%= form_tag check_student_course_exam_path(@course, @exam) do -%>
+    <div id="question">
+        <%= render(:partial => 'question', 
+                         :collection => @exam.questions,
+                         :spacer => "<br>")
+        %>
+        <br />
+        <%= link_to '返回', student_course_exams_path(@course)%>
+    
+    </div>
+    <div id="control" class="xScrollStick">
+         剩余时间：<span id="remain" class="item"><%= @exam.time_limit %>:00</span>
+        <div class="item"><%= submit_tag '交卷' %></div>
+    </div>
+    
+    <% end -%>
+     <div id="footer" align="center">
+        All Rights Resered by Jin 2007~2010
+     </div>
+</body>
+</html>
+ 

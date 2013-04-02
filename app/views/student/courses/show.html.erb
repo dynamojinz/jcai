@@ -1,5 +1,58 @@
-<p id="notice"><%= notice %></p>
+<% @page_title= "欢迎你进入#{@course.name}课程学习" -%>
 
+<div class="title">课程通知</div>
+  <div class="content">
+    <ul>
+      <% for notify in @notifies -%>
+      <li>
+      <%= h notify.title %>(阅读次数:<%= h notify.readed_times %>次) &nbsp;
+      <%= link_to '查看', [:student, @course, notify] %>
+      </li>
+      <% end -%>
+    </ul>
+    ……
+  </div>
+  <div class="command"><%= link_to '查看', student_course_notifies_path(@course) %></div>
+  <div class="title">课程资料</div>
+  <div class="content">
+    <ul>
+      <% for courseware in @coursewares -%>
+      <li>
+      <%= h courseware.file_name %>(类型:<%= h courseware.content_type %>,大小:<%= courseware.file_size/1024 %>kb) &nbsp;
+      <%= link_to '下载', download_student_course_courseware_path(@course, courseware) %>
+      </li>
+      <% end -%>
+    </ul>
+    ……
+  </div>
+  <div class="command"><%= link_to '查看', student_course_coursewares_path(@course) %></div>
+  <div class="title">课程测验</div>
+  <div class="content">
+      <ul>
+      <% for exam in @exams -%>
+      <li>
+      <%= h exam.name %>(共<%= h exam.questions.size %>题，总分<%= h exam.total_score %>分，限时<%= h exam.time_limit %>分钟) &nbsp;
+      <%= link_to '查看', [:student, @course, exam] %>
+      </li>
+      <% end -%>
+    </ul>
+    ……
+  </div>
+  <div class="command"><%= link_to '查看', student_course_exams_path(@course) %></div>
+   <div class="title">最新留言</div>
+     <ul>
+      <% for message in @messages -%>
+      <li>
+	  <%= link_to h(truncate(message.question, :length => 50)), [:student, @course, message] %>
+      (<%= h(message.student.name) if message.student %>,<%= datetime_string(message.created_at) %>) &nbsp;
+      <%= link_to '查看', [:student, @course, message] %>
+      </li>
+      <% end -%>
+    </ul>
+  <div class="command"><%= link_to '查看', student_course_messages_path(@course) %></div>
+  <div class="title">课程安排</div>
+  <div class="content"><%=simple_format(h(truncate(@course.arrangement, :length => 200))) %></div>
+  <div class="command"><%= link_to '查看', arrangement_student_course_path(@course) %></div>
+  <br />
+<%= link_to '返回课程列表', student_courses_path %>
 
-<%= link_to 'Edit', edit_student_course_path(@student_course) %> |
-<%= link_to 'Back', student_courses_path %>

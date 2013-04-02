@@ -36,6 +36,27 @@ Jcai::Application.routes.draw do
 			member do
 				get "arrangement"
 			end
+			# sub resources of courses
+			resources :notifies, :messages
+			# coursewares
+			resources :coursewares do
+				member do
+					get "download"
+				end
+			end
+			# exams
+			resources :exams do
+				member do
+					get "start"
+					post "check"
+				end
+				resources :questions do
+					member do
+						get "question"
+						get "choices"
+					end
+				end
+			end
 		end
 	end
 
@@ -63,6 +84,8 @@ Jcai::Application.routes.draw do
   get "login/notice"
 
   get "login/change_password"
+
+  post "login/change_password"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
